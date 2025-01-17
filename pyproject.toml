@@ -56,11 +56,10 @@ deps = ["Django >= 5.1, < 5.2"]
 
 [tool.tox.gh-actions]
 # # Maps GitHub Actions python version numbers to tox env vars
-python = {"3.11" = ["py311"], "3.12" = ["py312"] }
-# python = """
-# 	3.11: py311
-# 	3.12: py312
-# 	"""
+python = """
+	3.11: py311
+	3.12: py312
+"""
 
 [tool.tox.gh-actions.env]
 # Maps GitHub Actions DJANGO version env var to tox env vars
@@ -68,7 +67,7 @@ DJANGO = """
   4.2: django42
   5.0: django50
   5.1: django51
-  """
+"""
 
 # uv ###########################################################################
 
