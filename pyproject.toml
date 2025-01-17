@@ -1,0 +1,81 @@
+# project ######################################################################
+
+[project]
+dependencies = [
+  "django>=4.2",
+]
+description = "Trying to get GitHub Actions to work"
+version = "0.1"
+name = "github-actions-tryout"
+requires-python = ">=3.11"
+
+# dependency-groups ############################################################
+
+[dependency-groups]
+dev = [
+  "coverage[toml]",
+  "packaging",
+]
+
+
+# tox ##########################################################################
+
+[tool.tox]
+requires = ["tox>=4.0"]
+env_list = [
+  # Django 4.2
+  "py311-django42",
+  "py312-django42",
+  # Django 5.0
+  "py311-django50",
+  "py312-django50",
+  # Django 5.1
+  "py311-django51",
+  "py312-django51",
+]
+
+[tool.tox.env_run_base]
+setenv = { "DJANGO_SETTINGS_MODULE" = "tests.settings", "PYTHONPATH" = "{toxinidir}" }
+dependency_groups = ["dev"]
+commands = [
+  [
+    "{envbindir}/django-admin",
+    "test",
+  ],
+]
+
+[tool.tox.env.py311-django42]
+deps = ["Django >= 4.2, < 4.3"]
+[tool.tox.env.py312-django42]
+deps = ["Django >= 4.2, < 4.3"]
+
+[tool.tox.env.py311-django50]
+deps = ["Django >= 5.0, < 5.1"]
+[tool.tox.env.py312-django50]
+deps = ["Django >= 5.0, < 5.1"]
+
+[tool.tox.env.py311-django51]
+deps = ["Django >= 5.1, < 5.2"]
+[tool.tox.env.py312-django51]
+deps = ["Django >= 5.1, < 5.2"]
+
+[tool.tox.gh-actions]
+# Maps GitHub Actions python version numbers to tox env vars
+python = """
+	3.11: py311
+	3.12: py312
+	"""
+
+[tool.tox.gh-actions.env]
+# Maps GitHub Actions DJANGO version env var to tox env vars
+DJANGO = """
+  4.2: django42
+  5.0: django50
+  5.1: django51
+  """
+
+# uv ###########################################################################
+
+[tool.uv]
+# Ensure Tox always gets a fresh package.
+reinstall-package = ["myproject"]

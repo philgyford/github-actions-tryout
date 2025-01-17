@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+src/github_actions_tryout.egg-info/PKG-INFO
+src/github_actions_tryout.egg-info/SOURCES.txt
+src/github_actions_tryout.egg-info/dependency_links.txt
+src/github_actions_tryout.egg-info/requires.txt
+src/github_actions_tryout.egg-info/top_level.txt
+src/myproject/__init__.py
+tests/test_versions.py
